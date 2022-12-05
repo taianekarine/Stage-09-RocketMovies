@@ -24,7 +24,6 @@ export const CreateMovie = () => {
 
   const navigate = useNavigate();
 
-
   const handleAddTags = () => {
     setTags(prevState => [...prevState, newTags]);
     setNewTags('');
@@ -35,6 +34,10 @@ export const CreateMovie = () => {
   }
 
   const handleNewFilm = async () => {
+    if(newTags) {
+      return alert('Existe conteudo no marcador, mas não clicou no icone de adicionar. Clique para adicionar ou deixe o campo vazio.')
+    }
+
     await api.post('/notes',  {
       title,
       description,
@@ -45,6 +48,17 @@ export const CreateMovie = () => {
 
     alert('Novo filme criado com sucesso.')
     navigate('/');
+  }
+
+  const handleRemoveFilm = async () => {
+    const confirm = window.confirm('Deseja excluir a nota?')
+
+    if(confirm) {
+      await api.delete(`/notes/${params.id}`);
+      alert('Filme excluído!')
+      navigate('/')
+    }
+
   }
 
 
@@ -110,7 +124,6 @@ export const CreateMovie = () => {
           </Section>
 
           <div className='buttons'>
-            <Button title = {'Excluir nota'}/>
             <Button 
               title = {'Adicionar nota'}
               onClick = {handleNewFilm}/>

@@ -66,11 +66,11 @@ export const Form = styled.form`
 
   .buttons {
     display: flex;
-    gap: 4rem;
+    align-items: center;
+    justify-content: center;
 
-    > button:nth-child(1) {
-      background-color: black;
-      color: ${({ theme }) => theme.COLORS.C_FONT_3};
+    > button {
+      width: 60rem;
     }
   }
 

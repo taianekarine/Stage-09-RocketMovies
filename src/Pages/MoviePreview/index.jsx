@@ -1,13 +1,25 @@
 import { Header } from '../../Components/Header';
-import { Container, Content, Description, InfoUser, Title } from './styles';
+import { Container, Content, Description, InfoUser, Title, Button } from './styles';
 import { FiClock } from 'react-icons/fi';
-import {StarEmpty} from '../../Components/StarEmpty'
-import {StarColor} from '../../Components/StarColor'
-import { Tag } from '../../Components/Tag'
+import {StarEmpty} from '../../Components/StarEmpty';
+import {StarColor} from '../../Components/StarColor';
+import { Tag } from '../../Components/Tag';
+import { api } from '../../Services/api'
 
 export const MoviePreview = () => {
   const data = {
     rating: 4
+  }
+
+  const handleRemoveFilm = async () => {
+    const confirm = window.confirm('Deseja excluir a nota?')
+
+    if(confirm) {
+      await api.delete(`/notes/${params.id}`);
+      alert('Nota excluída!')
+      navigate('/')
+    }
+
   }
 
   return (
@@ -62,7 +74,11 @@ export const MoviePreview = () => {
           tenta recuperar os dados de Miller, matando Doyle e atrasando a partida. Ao voltarem para a Endurance, Cooper e Amelia descobrem que 23 anos se passaram.
         </Description>
 
+        <Button onClick={handleRemoveFilm}>Excluir nota</Button>
+
         </Content>
+        
+      
       </main>
     </Container>
   )

@@ -19,6 +19,9 @@ export const Container = styled.div`
 export const Content = styled.div`
   width: 118rem;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   > section {
     padding-top: 4rem;
@@ -37,6 +40,7 @@ export const Content = styled.div`
   .tags {
     margin-top: 4rem;
   }
+
 `
 
 export const Title = styled.div`
@@ -68,4 +72,24 @@ export const Description = styled.p`
   text-align: justify;
   color: ${({ theme }) => theme.COLORS.C_FONT_1};
   margin-bottom: 5rem;
+`
+
+export const Button = styled.button`
+  width: 60rem;
+  height: 5.6rem;
+  border-radius: 1rem;
+  padding: 0 1.6rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: ${({ theme }) => theme.COLORS.BG_BUTTON};
+  color: ${({ theme }) => theme.COLORS.C_FONT_BUTTON};
+  font-size: 1.6rem;
+  margin: 2rem;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `
