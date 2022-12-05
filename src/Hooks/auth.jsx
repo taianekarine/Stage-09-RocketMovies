@@ -19,11 +19,8 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem('@rocketmovies:token', token);
 
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      // api.defaults.headers.authorization = `Bearer ${token}`;
-
 
       setData({ user, token })
-      console.log(token)
 
     } catch (error) {
       if(error.response) {
