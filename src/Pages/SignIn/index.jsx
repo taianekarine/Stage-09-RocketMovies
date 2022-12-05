@@ -3,7 +3,7 @@ import { Background, Container, Form } from './styles';
 import { Input } from '../../Components/Input';
 import { Button } from '../../Components/Button'
 import { FiMail, FiLock } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 
 export const SignIn = () => {
@@ -11,12 +11,13 @@ export const SignIn = () => {
   const [password, setPassword] = useState('');
 
   const { signIn } = useAuth();
+  const navigate = useNavigate()
 
   const handleSignIn = () => {
     signIn({ email, password })
+    navigate('/')
   };
 
-  console.log(Button);
   return (
     <Container>
       <Form>
@@ -38,7 +39,7 @@ export const SignIn = () => {
         onChange = {e => setPassword(e.target.value)}
       />
       
-      <Button title = 'Entrar' onClick ={handleSignIn}/>
+      <Button title = 'Entrar' onClick ={ handleSignIn }/>
 
       <Link to = '/register'>Criar conta</Link>
       </Form>

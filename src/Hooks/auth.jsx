@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { api } from '../services/api';
 
 export const AuthContext = createContext({});
@@ -14,8 +16,8 @@ const AuthProvider = ({ children }) => {
       const { user, token } = response.data
       
 
-      localStorage.setItem('@rocketmovies:user', JSON.stringify(user));
-      localStorage.setItem('@rocketmovies:token', token);
+      localStorage.setItem('@rocketnotes:user', JSON.stringify(user));
+      localStorage.setItem('@rocketnotes:token', token);
 
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
@@ -30,11 +32,12 @@ const AuthProvider = ({ children }) => {
   }
 
   const signOut = () => {
-
-    localStorage.removeItem('@rocketmovies:token');
-    localStorage.removeItem('@rocketmovies:user');
+    const navigate = useNavigate()
+    localStorage.removeItem('@rocketnotes:token');
+    localStorage.removeItem('@rocketnotes:user');
     
     setData({})
+    navigate('/')
   };
 
   const updateProfile = async ({ user, avatarFile }) => {
@@ -49,7 +52,7 @@ const AuthProvider = ({ children }) => {
 
       await api.put('/users', user);
       
-      localStorage.setItem('@rocketmovies:user', JSON.stringify(user));
+      localStorage.setItem('@rocketnotes:user', JSON.stringify(user));
 
       setData({ user, token: data.token });
       alert('Perfil atualizado!')
@@ -63,8 +66,8 @@ const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('@rocketmovies:token');
-    const user = localStorage.getItem('@rocketmovies:user');
+    const token = localStorage.getItem('@rocketnotes:token');
+    const user = localStorage.getItem('@rocketnotes:user');
 
     if(token && user) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;

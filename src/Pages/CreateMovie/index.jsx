@@ -7,8 +7,20 @@ import { NoteItem } from '../../Components/NoteItem';
 import { Section } from '../../Components/Section';
 import { Button } from '../../Components/Button'
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 export const CreateMovie = () => {
+  const [ tags, setTags ] = useState([]);
+  const [ newTags, setNewTags ] = useState('');
+
+  const handleAddTags = () => {
+    setTags(prevState => [...prevState, newTags]);
+    setNewTags('');
+  }
+
+
+
+
   return (
     <Container>
       <Header/>
@@ -41,25 +53,23 @@ export const CreateMovie = () => {
             style = {{color: '#948F99', fontSize: '2rem'}}
           >
             <div className='tags'>
-            <NoteItem 
-              value = {'Animação'}
+              {
+                tags.map((tags, index) => (
+                  <NoteItem
+                    key = {String(index)}
+                    value = {tags}
+                    onClick = {() => {}}
+                  />
+                ))
+              }
+
+
+            <NoteItem isNew
+              placeholder = {'Nova marcação'}
+              onChange = {e => setNewTags(e.target.value)}
+              value = {newTags}
+              onClick = {handleAddTags}
             />
-
-            <NoteItem 
-              value = {'Aventura'}
-            />  
-
-            <NoteItem 
-              value = {'Comédia'} isNew
-            />
-
-            <NoteItem 
-              value = {'Drama'} isNew
-            />  
-
-            <NoteItem 
-              value = {'Terror'} isNew
-            />  
 
             </div>
           </Section>

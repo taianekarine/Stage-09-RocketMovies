@@ -23,7 +23,7 @@ border-bottom-color: ${({ theme }) => theme.COLORS.BG_MARGIN};
   color: ${({ theme }) => theme.COLORS.C_FONT_3};
 }`
 
-export const Profile = styled(Link)`
+export const Profile = styled.div`
   display: flex;
   align-items: center;
 

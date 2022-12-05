@@ -2,6 +2,7 @@ import { Container, Profile } from './styles';
 import { Input } from '../Input';
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../Services/api';
+import avatarPlaceholder from '../../Assets/avatar_placeholder.svg'
 
 
 export const Header = () => {
