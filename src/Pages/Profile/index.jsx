@@ -3,7 +3,7 @@ import { Avatar, Container, Form } from './styles';
 import { Input } from '../../Components/Input';
 import { Button } from '../../Components/Button';
 import { useAuth } from '../../hooks/auth';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { api } from '../../services/api';
 import { useState } from 'react';
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
@@ -18,13 +18,9 @@ export const Profile = () => {
   const [passwordNew, setPasswordNew] = useState();
 
   const avatarUrl = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
+
   const [avatar, setAvatar] = useState(avatarUrl);
   const [avatarFile, setAvatarFile] = useState(null);
-
-  const navigate = useNavigate()
-  const handleBack = () => {
-    navigate('/')
-  }
 
   const handleUpdate = async () => {
     const updated = {
@@ -35,7 +31,7 @@ export const Profile = () => {
     }
     const userUpdated = Object.assign(user, updated)
     await updateProfile({ user: userUpdated, avatarFile });
-
+  
   };
 
   const handleChangeAvatar = (event) => {
