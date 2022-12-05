@@ -1,5 +1,4 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { api } from '../services/api';
 
@@ -32,12 +31,11 @@ const AuthProvider = ({ children }) => {
   }
 
   const signOut = () => {
-    const navigate = useNavigate()
+
     localStorage.removeItem('@rocketnotes:token');
     localStorage.removeItem('@rocketnotes:user');
     
     setData({})
-    navigate('/')
   };
 
   const updateProfile = async ({ user, avatarFile }) => {

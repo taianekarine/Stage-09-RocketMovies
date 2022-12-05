@@ -2,7 +2,8 @@ import { Container, Profile } from './styles';
 import { Input } from '../Input';
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../Services/api';
-import avatarPlaceholder from '../../Assets/avatar_placeholder.svg'
+import avatarPlaceholder from '../../Assets/avatar_placeholder.svg';
+import { Link } from 'react-router-dom';
 
 
 export const Header = () => {
@@ -14,9 +15,9 @@ export const Header = () => {
      
       <h1>RocketMovies</h1>
       <Input placeholder = 'Pesquise pelo título'/>
-      <Profile to = '/profile'>
+      <Profile>
         <div>
-        <p>{user.name}</p>
+        <Link to = '/profile'>{user.name}</Link>
 
         <button onClick = {signOut}>Sair</button>
         </div>

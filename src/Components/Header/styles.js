@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+
 
 export const Container = styled.header`
 grid-area: header;
@@ -32,7 +32,7 @@ export const Profile = styled.div`
   flex-direction: column;
   align-items: end;
 
-  p {
+  a {
   color: ${({ theme }) => theme.COLORS.C_FONT_1};
   font-weight: bold;
   white-space: nowrap;
