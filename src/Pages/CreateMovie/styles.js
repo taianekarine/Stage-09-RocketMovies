@@ -20,7 +20,7 @@ grid-template-areas:
 .tags {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
   flex-wrap: wrap;
   background-color: black;
   margin-bottom: 4rem;

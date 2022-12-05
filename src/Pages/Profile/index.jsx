@@ -3,7 +3,7 @@ import { Avatar, Container, Form } from './styles';
 import { Input } from '../../Components/Input';
 import { Button } from '../../Components/Button';
 import { useAuth } from '../../hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { api } from '../../services/api';
 import { useState } from 'react';
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg';
@@ -50,14 +50,14 @@ export const Profile = () => {
   return (
     <Container>
       <header>
-      <button type = 'button' onClick={handleBack}>
+      <Link to = '/'>
         <FiArrowLeft />
-      </button>
+      </Link>
       </header>
 
       <Form>
         <Avatar>
-          <img src="https://github.com/taianekarine.png" 
+          <img src={avatar} 
                alt="Foto do usuário" 
           />
 
