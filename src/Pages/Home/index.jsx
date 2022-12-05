@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 export function Home() {
   const data = {
-    rating: 4
+    rating: 1
   }
 
   return(

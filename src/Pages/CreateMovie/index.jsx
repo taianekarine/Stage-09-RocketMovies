@@ -8,10 +8,22 @@ import { Section } from '../../Components/Section';
 import { Button } from '../../Components/Button'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { api } from '../../Services/api'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 
 export const CreateMovie = () => {
+  const [ title, setTitle ] = useState('');
+  const { user } = useAuth();
+  const [ rating, setRating ] = useState ('');
+  const [ description, setDescription ] = useState('');
+
   const [ tags, setTags ] = useState([]);
   const [ newTags, setNewTags ] = useState('');
+
+
+  const navigate = useNavigate();
+
 
   const handleAddTags = () => {
     setTags(prevState => [...prevState, newTags]);
@@ -22,7 +34,18 @@ export const CreateMovie = () => {
     setTags(prevState => prevState.filter( tag => tag !== deleted));
   }
 
+  const handleNewFilm = async () => {
+    await api.post('/notes',  {
+      title,
+      description,
+      rating,
+      tags,
+      user_id: user.id
+    });
 
+    alert('Novo filme criado com sucesso.')
+    navigate('/');
+  }
 
 
   return (
@@ -40,6 +63,8 @@ export const CreateMovie = () => {
             <Input 
               placeholder = 'Títutlo'
               type = 'text'
+              onChange = {e => setTitle(e.target.value)}
+              required
             />
 
             <Input 
@@ -47,11 +72,17 @@ export const CreateMovie = () => {
               type = 'number'
               min = '0'
               max = '5'
+              onChange = {e => setRating(e.target.value)}
+              required
             />
 
           </div>
 
-          <Textarea placeholder = 'Observações'/>
+          <Textarea 
+            placeholder = 'Observações'
+            onChange = {e => setDescription(e.target.value)}
+            required
+          />
           
           <Section title = {'Marcadores'}
             style = {{color: '#948F99', fontSize: '2rem'}}
@@ -80,7 +111,9 @@ export const CreateMovie = () => {
 
           <div className='buttons'>
             <Button title = {'Excluir nota'}/>
-            <Button title = {'Adicionar nota'}/>
+            <Button 
+              title = {'Adicionar nota'}
+              onClick = {handleNewFilm}/>
           </div>
         </Form>
       </main>
