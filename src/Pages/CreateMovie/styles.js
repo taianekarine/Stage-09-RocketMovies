@@ -74,4 +74,13 @@ export const Form = styled.form`
     }
   }
 
+  &::-webkit-scrollbar {
+    width: 0.8rem;
+    padding: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.C_FONT_3};
+    border-radius: 8rem;
+  }
 `

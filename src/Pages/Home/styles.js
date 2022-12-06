@@ -98,7 +98,6 @@ export const Note = styled.div`
   width:100%;
   max-width: 118rem;
   height: 100%;
-
   margin-top: 3.8rem ;
   margin-inline: auto;
   overflow-y: auto;
@@ -107,7 +106,12 @@ export const Note = styled.div`
 
   h1 {
     text-align: start;
-    ${({ theme }) => theme.COLORS.C_FONT_1};
+    color: ${({ theme }) => theme.COLORS.C_FONT_1};
+  }
+
+  h2 {
+    text-align: center;
+    color: ${({ theme }) => theme.COLORS.C_FONT_5};
   }
 
   &::-webkit-scrollbar {

@@ -14,13 +14,13 @@ export const Home = () => {
   const [search, setSearch] = useState('');
 
   const navigate = useNavigate();
-  const params = useParams();
 
   const handleShowFilms = (id) => {
     return navigate(`/moviepreview/${id}`);
   }
 
   useEffect(() => {
+
     async function fetchNotes() {
       try {
         const response = await api.get(`/notes?title=${search}`);
@@ -40,17 +40,12 @@ export const Home = () => {
 
     fetchNotes();
   }, [search]);
-
-
+  
+  
   return(
     <Container>
       <HeaderHome>
-        <Input
-            className="search only-in-desktop"
-            placeholder="Pesquisar pelo título"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
+ 
       </HeaderHome>
 
       <main>
@@ -70,7 +65,7 @@ export const Home = () => {
         <Note>
           {console.log(notes, 'abc')}
           {notes.length == 0 ? (
-              <h1>Nenhum filme encontrado</h1>
+              <h2>Nenhum filme encontrado</h2>
             ) : (
               notes.map(note => (
                 <HomeNotes
