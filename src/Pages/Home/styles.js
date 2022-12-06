@@ -17,7 +17,7 @@ export const Container = styled.div`
 
  export const MyFilms = styled.span` 
   margin: 0 auto;
-  
+  height: 10rem;
 
   > div {
     margin-top: 5rem;
@@ -94,18 +94,19 @@ export const Title = styled.div`
   }
  `
 
-export const Notes = styled.div`
-  width: 100%;
+export const Note = styled.div`
+  width:100%;
+  max-width: 118rem;
   height: 100%;
 
-  margin-top: 3.8rem;
-
+  margin-top: 3.8rem ;
+  margin-inline: auto;
   overflow-y: auto;
-
+  background-color: transparent;
   padding-right: 0.8rem;
 
   h1 {
-    text-align: center;
+    text-align: start;
     ${({ theme }) => theme.COLORS.C_FONT_1};
   }
 

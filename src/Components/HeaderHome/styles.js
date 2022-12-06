@@ -7,7 +7,7 @@ width: 100%;
 height: 10.5rem;
 display: flex;
 align-items: center;
-justify-content: space-between;
+justify-content: center;
 padding: 4.2rem 12.3rem;
 margin: 0 auto;
 gap: 6.4rem;

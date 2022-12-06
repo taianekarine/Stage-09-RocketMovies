@@ -1,7 +1,6 @@
 import { Header } from '../../Components/Header';
 import { Container, Content, Description, InfoUser, Title, Button } from './styles';
 import { FiClock } from 'react-icons/fi';
-import { Tag } from '../../Components/Tag';
 import { api } from '../../Services/api'
 import { Rating } from '../../Components/Rating';
 import { useState, useEffect } from 'react';
@@ -90,7 +89,7 @@ export const MoviePreview = () => {
       const response = await api.get('/tags');
       setTags(response.data)
     }
-    console.log(response.data)
+
     fetchTags()
   },[])
 
@@ -115,15 +114,6 @@ export const MoviePreview = () => {
               )}
               </span>
             </InfoUser>
-          {/* {
-            tags && (
-              <div className='tags'>
-                {tags && tags.map(tag => 
-                  <Tag title = {tag.name} key = {tag.id} />
-                )}
-              </div>
-            )
-          } */}
 
           {
             data.description && (<Description>{data.description}</Description>)
