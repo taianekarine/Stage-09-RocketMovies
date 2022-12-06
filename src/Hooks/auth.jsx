@@ -1,12 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-
 import { api } from '../services/api';
 
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const [data, setData] = useState({});
-
   const signIn = async ({ email, password }) => {
 
     try {
@@ -14,7 +12,6 @@ const AuthProvider = ({ children }) => {
       const response = await api.post('/sessions', { email, password });
       const { user, token } = response.data
       
-
       localStorage.setItem('@rocketmovies:user', JSON.stringify(user));
       localStorage.setItem('@rocketmovies:token', token);
 
@@ -34,7 +31,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('@rocketmovies:token');
     localStorage.removeItem('@rocketmovies:user');
     
-    setData({})
+    setData({});
   };
 
   const updateProfile = async ({ user, avatarFile }) => {

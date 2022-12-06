@@ -1,18 +1,44 @@
-import { Container, Content, MyFilms, Title } from "./styles";
-import { Tag } from "../../components/Tag";
+import { Container, MyFilms, Notes } from "./styles";
 import { Header } from "../../components/Header";
-import {StarEmpty} from '../../Components/StarEmpty';
-import {StarColor} from '../../Components/StarColor';
 import { FiPlus } from 'react-icons/fi';
 import { Button } from '../../Components/Button';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { HomeNotes } from "../../Components/HomeNotes";
+import { api } from '../../Services/api';
 
-export function Home() {
-  
-  const data = {
-    rating: 1
+
+
+export const Home = () => {
+  const [notes, setNotes] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleShowFilms = () => {
+    navigate(`/home/${id}`);
   }
 
+  useEffect(() => {
+   const fetchNotes = async () => {
+      try {
+        const response = await api.get(`/notes?title=${title}&description=${description}&`);
+        console.log(api, 'txt')
+
+        setNotes(response.data);
+      } catch (error) {
+        if (error.response) {
+          alert(error.response.data.message);
+        } else {
+          alert(
+            "Não foi possível carregar os filmes. Tente recarregar a página."
+          );
+          console.log(error);
+        }
+      }
+    }
+
+    fetchNotes();
+  }, []);
   return(
     <Container>
       <Header />
@@ -31,16 +57,16 @@ export function Home() {
           </div>
         </MyFilms>
 
-        <Content> 
+        {/* <Content> 
         <Title>
           <h1>Interstellar</h1>
           <div className="rating">
-            { data.rating && data.rating === 0 ? <> <StarEmpty/> <StarEmpty/> <StarEmpty/> <StarEmpty/> <StarEmpty/> </> : ''}
-            { data.rating && data.rating === 1 ? <> <StarColor/> <StarEmpty/> <StarEmpty/> <StarEmpty/> <StarEmpty/> </> : ''}
-            { data.rating && data.rating === 2 ? <> <StarColor/> <StarColor/> <StarEmpty/> <StarEmpty/> <StarEmpty/> </> : ''}
-            { data.rating && data.rating === 3 ? <> <StarColor/> <StarColor/> <StarColor/> <StarEmpty/> <StarEmpty/> </> : ''}
-            { data.rating && data.rating === 4 ? <> <StarColor/> <StarColor/> <StarColor/> <StarColor/> <StarEmpty/> </> : ''}
-            { data.rating && data.rating === 5 ? <> <StarColor/> <StarColor/> <StarColor/> <StarColor/> <StarColor/> </> : ''}  
+            { datas.rating && datas.rating === 0 ? <> <StarEmpty/> <StarEmpty/> <StarEmpty/> <StarEmpty/> <StarEmpty/> </> : ''}
+            { datas.rating && datas.rating === 1 ? <> <StarColor/> <StarEmpty/> <StarEmpty/> <StarEmpty/> <StarEmpty/> </> : ''}
+            { datas.rating && datas.rating === 2 ? <> <StarColor/> <StarColor/> <StarEmpty/> <StarEmpty/> <StarEmpty/> </> : ''}
+            { datas.rating && datas.rating === 3 ? <> <StarColor/> <StarColor/> <StarColor/> <StarEmpty/> <StarEmpty/> </> : ''}
+            { datas.rating && datas.rating === 4 ? <> <StarColor/> <StarColor/> <StarColor/> <StarColor/> <StarEmpty/> </> : ''}
+            { datas.rating && datas.rating === 5 ? <> <StarColor/> <StarColor/> <StarColor/> <StarColor/> <StarColor/> </> : ''}  
           </div>
         </Title>
         <div className="description">
@@ -77,7 +103,22 @@ export function Home() {
             title = {'Família'}
           />
         </div>
-        </Content>
+        </Content> */}
+
+        <Notes>
+          {console.log(notes, 'abc')}
+        {notes.length == 0 ? (
+              <h1>Nenhum filme encontrado</h1>
+            ) : (
+              notes.map(note => (
+                <HomeNotes
+                  key={String(note.id)}
+                  data={note}
+                  onClick={() => handleShowFilms(note.id)}
+                />
+              ))
+            )}
+        </Notes>
 
        </main>
     </Container>

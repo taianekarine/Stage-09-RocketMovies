@@ -93,3 +93,35 @@ export const Title = styled.div`
  
   }
  `
+
+export const Notes = styled.div`
+  width: 100%;
+  height: 100%;
+
+  margin-top: 3.8rem;
+
+  overflow-y: auto;
+
+  padding-right: 0.8rem;
+
+  h1 {
+    text-align: center;
+    ${({ theme }) => theme.COLORS.C_FONT_1};
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.COLORS.C_FONT_3};
+    border-radius: 8rem;
+  }
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+`;
+

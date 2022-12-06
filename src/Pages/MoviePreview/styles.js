@@ -75,8 +75,8 @@ export const Description = styled.p`
 `
 
 export const Button = styled.button`
-  width: 60rem;
-  height: 5.6rem;
+  width: 25rem;
+  height: 3.6rem;
   border-radius: 1rem;
   padding: 0 1.6rem;
   font-weight: 500;
