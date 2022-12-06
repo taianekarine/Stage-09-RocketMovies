@@ -50,18 +50,6 @@ export const CreateMovie = () => {
     navigate('/');
   }
 
-  const handleRemoveFilm = async () => {
-    const confirm = window.confirm('Deseja excluir a nota?')
-
-    if(confirm) {
-      await api.delete(`/notes/${params.id}`);
-      alert('Filme excluído!')
-      navigate('/')
-    }
-
-  }
-
-
   return (
     <Container>
       <Header/>
